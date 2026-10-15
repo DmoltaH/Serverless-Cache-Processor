@@ -1,0 +1,6 @@
+project_name       = "sre-assessment"
+aws_region         = "us-east-2"
+deployer_user_name = "terraform-deployer"
+
+# Set to false if AWSServiceRoleForElastiCache already exists in the account.
+create_elasticache_service_linked_role = true
