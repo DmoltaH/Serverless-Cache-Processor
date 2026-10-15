@@ -18,28 +18,6 @@ output "workload_boundary_arn" {
   value       = aws_iam_policy.workload_boundary.arn
 }
 
-output "bootstrap_backend_hcl" {
-  description = "Backend config to migrate this stack's own state into the bucket."
-  value       = <<-EOT
-    bucket       = "${aws_s3_bucket.state.bucket}"
-    key          = "bootstrap/terraform.tfstate"
-    region       = "${local.region}"
-    encrypt      = true
-    use_lockfile = true
-  EOT
-}
-
-output "infra_backend_hcl" {
-  description = "Backend config for the infra/ stack (save as infra/backend.hcl)."
-  value       = <<-EOT
-    bucket       = "${aws_s3_bucket.state.bucket}"
-    key          = "${local.infra_state_key}"
-    region       = "${local.region}"
-    encrypt      = true
-    use_lockfile = true
-  EOT
-}
-
 output "aws_cli_config" {
   description = "Append to ~/.aws/config on your workstation."
   value       = <<-EOT

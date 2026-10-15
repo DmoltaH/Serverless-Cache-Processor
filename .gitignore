@@ -12,7 +12,6 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
-backend.hcl
 
 # Variables may contain environment-specific values; commit only *.example
 *.tfvars

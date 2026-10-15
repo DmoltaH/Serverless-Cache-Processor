@@ -15,7 +15,6 @@ locals {
   # Deliberately does NOT start with the project prefix, so the deployer's
   # "${prefix}-*" S3 permissions never match the state bucket.
   state_bucket_name = "tfstate-${var.project_name}-${local.account_id}"
-  infra_state_key   = "infra/terraform.tfstate"
 }
 
 # Account-wide guardrail: no bucket in this account can ever be made public,

@@ -24,6 +24,8 @@ locals {
 # Network: VPC, subnets, IGW, NAT, route tables, S3 gateway endpoint, SGs
 # ---------------------------------------------------------------------------
 data "aws_iam_policy_document" "deployer_network" {
+  # Applies to the WHOLE role, not just networking: an explicit Deny in any
+  # attached policy overrides every Allow. IAM and STS are global, so excluded.
   statement {
     sid         = "DenyOutsideAllowedRegion"
     effect      = "Deny"
@@ -330,7 +332,6 @@ data "aws_iam_policy_document" "deployer_data" {
       "arn:${local.partition}:iam::${local.account_id}:role${local.bootstrap_iam_path}*",
       "arn:${local.partition}:iam::${local.account_id}:policy${local.bootstrap_iam_path}*",
       "arn:${local.partition}:iam::${local.account_id}:user${local.bootstrap_iam_path}*",
-      "arn:${local.partition}:iam::${local.account_id}:group${local.bootstrap_iam_path}*",
     ]
   }
 
