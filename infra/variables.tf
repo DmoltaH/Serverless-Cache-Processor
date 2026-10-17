@@ -26,3 +26,21 @@ variable "vpc_cidr" {
   type        = string
   default     = "10.0.0.0/16"
 }
+
+variable "availability_zones" {
+  description = "AZs to spread subnets across (high availability)."
+  type        = list(string)
+  default     = ["us-east-2a", "us-east-2b"]
+}
+
+variable "public_subnet_cidrs" {
+  description = "Public subnet ranges, one per AZ (same order as availability_zones)."
+  type        = list(string)
+  default     = ["10.0.0.0/24", "10.0.1.0/24"]
+}
+
+variable "private_subnet_cidrs" {
+  description = "Private subnet ranges, one per AZ (same order as availability_zones)."
+  type        = list(string)
+  default     = ["10.0.10.0/24", "10.0.11.0/24"]
+}
